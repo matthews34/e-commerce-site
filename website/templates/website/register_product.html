@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <form method = "post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <fieldset>
+            <legend><h1>Cadastrar novo produto</h1></legend>
+            {{ form.as_p }}
+        </fieldset>
+        <button type="submit">Cadastrar</button>
+    </form>
+</body>
+</html>
+
+<!-- <form action="{% url 'website:register_product' %}" method="post">
+    {% csrf_token %}
+    <fieldset>
+        <legend><h1>Registrar novo produto</h1></legend>
+
+        <label for="name">Nome</label><br>
+        <input type="text" name="name" id="name" required><br>  
+        
+        <label for="category">Categoria</label><br>
+        <input type="text" name="category" id="category" required><br>
+        
+        <label for="price">Valor unitário</label><br>
+        <input type="number" name="price" id="price" step="0.01" required><br>
+
+        <label for="stock">Estoque</label><br>
+        <input type="number" name="stock" id="stock" value="0"><br>
+
+        <label for="image">Imagem</label><br>
+        <input type="file" name="image" id="image"><br>
+
+    </fieldset>
+    <input type="submit" value="Registrar">
+    </form> -->
+
