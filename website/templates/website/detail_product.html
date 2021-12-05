@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset='utf-8'>
+</head>
+<body>
+    <h1>{{ product.name }}</h1>
+    <img src="{{ product.image.url }}" height="100" width="100"><br>
+    ID: {{ product.id }}<br>
+    Categoria: {{ product.category }}<br>
+    Preço unitário: R${{ product.price|floatformat:2 }}<br>
+    Quantidade em estoque: {{ product.stock }}<br>
+</body>
+</html>

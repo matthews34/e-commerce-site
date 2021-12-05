@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset='utf-8'>
+</head>
+<body>
+    <h1>Produtos cadastrados</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Preço</th>
+            <th>Estoque</th>
+            <th>Editar</th>
+            <th>Deletar</th>
+        </tr>
+        {% for product in products %}
+        <tr>
+            <th>{{ product.id }}</th>
+            <th>{{ product.name }}</th>
+            <th>R${{ product.price|floatformat:2 }}</th>
+            <th>{{ product.stock }}</th>
+            <th><a href="{% url 'website:update_product' product.id %}">Editar</a></th>
+            <th><a href="{% url 'website:delete_product' product.id %}">Deletar</a></th>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="{% url 'website:register_product' %}">Cadastrar novo</a>
+</body>
+</html>

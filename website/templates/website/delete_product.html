@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset='utf-8'>
+</head>
+<body>
+    <form method="POST">
+        {% csrf_token %}
+        Tem certeza que deseja deletar o item {{ product.name }}?<br>
+        <input type="submit" value="Sim"/>
+        <a href="{% url 'website:list_products' %}">Cancelar</a>
+    </form>
+</body>
+</html>
