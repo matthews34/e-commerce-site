@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset='utf-8'>
+</head>
+<body>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <fieldset>
+            <legend><h1>Comprar {{ product.name }}</h1></legend>
+            
+            <input type="hidden" name="product_id" value="{{ product.id }}">
+
+            <!-- <fieldset>
+                <legend>Dados do usuário</legend>
+                <label for="user_name">Nome:</label>
+                <input type="text" name="user_name"><br>
+                <label for="user_email">E-mail:</label>
+                <input type="text" name="user_email"><br>
+                <label for="user_address">Endereço:</label>
+                <input type="text" name="user_address"><br>
+            </fieldset><br> -->
+
+            <label for="user_email">E-mail do usuário:</label>
+            <input type="text" name="user_email"><br>
+
+            <p>{{ product.stock }} disponível em estoque.</p>
+            <label for="quantity">Quantidade a comprar:</label>
+            <input type="number" name="quantity" value="1" min="1" max="{{ product.stock }}" onchange=updateTotal(this)>
+
+            <p>Total: R$<span id="total">{{ product.price|floatformat:2 }}</span></p>
+            
+        </fieldset>
+        <button type="submit">Comprar</button>
+    </form>
+
+    <script>
+        function updateTotal(input){
+            var quantity = input.value;
+            var total = quantity * {{ product.price|escapejs }};
+            document.getElementById('total').innerHTML = total.toFixed(2).replace('.', ',');
+            console.log(total);
+        }
+    </script>
+    
+</body>
+</html>
