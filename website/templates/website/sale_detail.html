@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset='utf-8'>
+</head>
+<body>
+    <fieldset>
+        <legend><h1>Compra realizada com sucesso</h1></legend>
+        <p>Comprador: {{ sale.user.name }}</p>
+        <p>Produto: {{ sale.product.name }}</p>
+        <p>Quantidade: {{ sale.quantity }}</p>
+        <p>Total: R${{ sale.value|floatformat:2 }}</p>
+        <p>Endereço de entrega: {{ sale.user.address }}</p>
+    </fieldset>
+    
+</body>
+</html>

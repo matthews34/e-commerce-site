@@ -68,8 +68,8 @@ def catalog(request):
     }
     return render(request, 'website/catalog.html', context)
 
-def buy_product(request, product_id):
-    product = get_object_or_404(Product, id=product_id)
+def buy_product(request, id):
+    product = get_object_or_404(Product, id=id)
     context = {
         'product': product
     }
@@ -95,9 +95,20 @@ def buy_product(request, product_id):
         # reduce stock
         product.stock = F('stock') - quantity
         product.save()
-        return HttpResponse('Success')
+        context['user'] = user
+        context['sale'] = sale
+        return HttpResponseRedirect(reverse('website:sale_detail', kwargs={'id': sale.id}))
     
     return render(request, 'website/buy_product.html', context)
+
+def sale_detail(request, id):
+    sale = get_object_or_404(Sale, id=id)
+    context = {
+        'sale': sale,
+        'user': sale.user,
+        'product': sale.product
+    }
+    return render(request, 'website/sale_detail.html', context)
         
 def index(request):
-    return HttpResponse('Index')
+    return HttpResponseRedirect(reverse('website:catalog'))
