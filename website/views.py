@@ -59,7 +59,7 @@ def delete_product(request, id):
         product.delete()
         return HttpResponseRedirect(reverse('website:list_products'))
 
-    return render(request, 'website/delete_product.html')
+    return render(request, 'website/delete_product.html', context)
 
 def catalog(request):
     products = get_list_or_404(Product, stock__gt=0)

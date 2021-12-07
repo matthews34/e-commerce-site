@@ -3,7 +3,7 @@
 {% load static %}
 <head>
     <meta charset='utf-8'>
-    <link rel='stylesheet' type='text/css' media='screen' href='{% static "website/style.css" %}'>
+    <link rel='stylesheet' type='text/css' media='screen' href='{% static "website/card.css" %}'>
 </head>
 <body>
     <div class="catalog">
@@ -14,9 +14,9 @@
                 {% else %}
                     <img src="{% static 'website/images/no-image.png' %}" alt="{{ self.name }}" style="width:100%">
                 {% endif %}
-                <h1>{{ product.name }}</h1>
+                <p class="name">{{ product.name }}</p>
                 <p class="price">R${{ product.price|floatformat:2 }}</p>
-                <p><a href="#" class="button">Comprar</a></p>
+                <p><a href="{% url 'website:buy_product' product.id %}" class="button">Comprar</a></p>
             </div>
         {% endfor %}
     </div>
